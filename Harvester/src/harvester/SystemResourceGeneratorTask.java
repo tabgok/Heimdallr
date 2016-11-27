@@ -14,14 +14,17 @@ import java.util.TimerTask;
  *
  * @author tbick
  */
-public class SystemCallTask extends TimerTask{
+public class SystemResourceGeneratorTask extends TimerTask{
     private int counter = 0;
-    private ResourceGenerator generator = null;
+    private SystemResourceGenerator generator = null;
     private String systemCall = null;
     
-    public SystemCallTask(ResourceGenerator generator, String systemCall){
+    public SystemResourceGeneratorTask(SystemResourceGenerator generator, String systemCall){
         this.generator = generator;
         this.systemCall = systemCall;
+        
+        
+        System.out.println("Created new SystemResourceGeneratorTask");
     }
     
     @Override
@@ -46,6 +49,7 @@ public class SystemCallTask extends TimerTask{
         }
         String value = output.toString();
         
+        //System.out.println(value);
         generator.receiveData(value);
     }
 }

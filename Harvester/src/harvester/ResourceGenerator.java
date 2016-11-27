@@ -5,6 +5,7 @@
  */
 package harvester;
 
+import java.util.Timer;
 import java.util.TimerTask;
 
 /**
@@ -27,8 +28,11 @@ public abstract class ResourceGenerator implements Generator, Source {
     public void generateData(long msPeriod){
         if(tTask == null){
             System.out.println("Invalid timer task");
+        }else if(msPeriod == 0){
+            tTask.run();
         }else{
-            
+            Timer timer = new Timer();
+            timer.scheduleAtFixedRate(tTask, 0, msPeriod);
         }
     }
 }

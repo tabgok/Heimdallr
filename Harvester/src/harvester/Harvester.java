@@ -34,7 +34,7 @@ public class Harvester {
         Harvester harvester = new Harvester();
         
         //Start gathering data
-        harvester.periodicallyGenerateData(1000);
+       // harvester.periodicallyGenerateData(1000);
         
         //Setup the HTTP server
         
@@ -82,32 +82,8 @@ public class Harvester {
         System.out.println(this);
     }
     
-    public void periodicallyGenerateData(long ms){
-        RunSystemCall rsc = new RunSystemCall(this);
-        
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(rsc, 0, ms);
-    }
-    
     public Object getData(){
         return value;
-    }
-}
-
-
-class RunSystemCall extends TimerTask{
-    private int counter = 0;
-    private Harvester myHarvester = null;
-    
-    public RunSystemCall(Harvester h){
-        myHarvester = h;
-    }
-    
-    @Override
-    public void run() {
-        System.out.println("Counter: " + counter);
-        counter++;
-        myHarvester.generateData();
     }
 }
 
