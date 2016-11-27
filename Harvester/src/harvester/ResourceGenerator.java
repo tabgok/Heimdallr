@@ -12,7 +12,7 @@ import java.util.TimerTask;
  *
  * @author tbick
  */
-public abstract class ResourceGenerator implements Generator, Source {
+public abstract class ResourceGenerator {
     private Object data = null;
     private TimerTask tTask = null;
     
@@ -24,7 +24,6 @@ public abstract class ResourceGenerator implements Generator, Source {
         this.data = data;
     }
     
-    @Override
     public void generateData(long msPeriod){
         if(tTask == null){
             System.out.println("Invalid timer task");

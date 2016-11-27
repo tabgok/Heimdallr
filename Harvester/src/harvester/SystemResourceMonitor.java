@@ -13,10 +13,14 @@ import java.util.HashMap;
  * @author teague
  */
 public class SystemResourceMonitor {
-    
+    private static final SystemResourceMonitor SYSTEM_RESOURCE_MONITOR = new SystemResourceMonitor();
     private final HashMap<String, SystemResourceGenerator> srgs = new HashMap<>();
     
-    public SystemResourceMonitor(){
+    public static SystemResourceMonitor getSystemResourceMonitor(){
+        return SYSTEM_RESOURCE_MONITOR;
+    }
+    
+    private SystemResourceMonitor(){
         System.out.println("System resource monitor started");
         
         SystemResourceGenerator srg = new SystemResourceGenerator("date +%s");

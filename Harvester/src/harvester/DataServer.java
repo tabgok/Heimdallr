@@ -40,13 +40,13 @@ public class DataServer implements HttpHandler{
             System.out.println("Started a dataserver");
                     
         } catch (IOException ex) {
-            Logger.getLogger(Harvester.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DataServer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     @Override
     public void handle(HttpExchange he) throws IOException {
-        String response =Main.getMain().resourceMonitors.get("Resources").systemMonitors.get("system").getResourceGenerator("date").getData().toString();
+        String response = SystemResourceMonitor.getSystemResourceMonitor().getResourceGenerator("date").getData().toString();
         System.out.println("Received a data request: " + response);
         he.sendResponseHeaders(200, response.length());
         OutputStream os = he.getResponseBody();

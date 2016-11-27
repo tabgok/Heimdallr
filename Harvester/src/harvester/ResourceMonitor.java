@@ -12,12 +12,15 @@ import java.util.HashMap;
  * @author teague
  */
 public class ResourceMonitor {
-    public HashMap<String, SystemResourceMonitor> systemMonitors = new HashMap<>();
+    private final static ResourceMonitor RESOURCE_MONITOR = new ResourceMonitor();
     
-    public ResourceMonitor(){
+    public static ResourceMonitor getResourceMonitor(){
+        return RESOURCE_MONITOR;
+    }
+    
+    private ResourceMonitor(){
         System.out.println("Resource monitor started");
         
-        SystemResourceMonitor srm = new SystemResourceMonitor();
-        systemMonitors.put("system", srm);
+        SystemResourceMonitor srm = SystemResourceMonitor.getSystemResourceMonitor();
     }
 }

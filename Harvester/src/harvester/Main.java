@@ -21,7 +21,7 @@ public class Main {
     
     
     private Main(){
-        ResourceMonitor rMonitor = new ResourceMonitor();
+        ResourceMonitor rMonitor = ResourceMonitor.getResourceMonitor();
         
         resourceMonitors.put("Resources", rMonitor);
         
@@ -31,6 +31,4 @@ public class Main {
     public static Main getMain(){
         return m;
     }
-    
-    
 }
