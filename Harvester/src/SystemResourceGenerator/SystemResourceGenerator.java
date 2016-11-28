@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.json.Json;
 
 /**
  *
@@ -65,8 +66,12 @@ public class SystemResourceGenerator {
     
     private void publish(){
         try {
-            
-            Files.write(outputFile.toPath(), Arrays.asList(value.toString()), Charset.forName("UTF-8"));
+            String json = Json.createObjectBuilder()
+                    .add("value", value.toString())
+                    .add("unit", "seconds")
+                    .add("timestamp_sec", value.toString())
+                    .build().toString();
+            Files.write(outputFile.toPath(), Arrays.asList(json), Charset.forName("UTF-8"));
         } catch (IOException ex) {
             Logger.getLogger(SystemResourceGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
