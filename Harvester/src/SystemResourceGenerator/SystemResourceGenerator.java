@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package SystemResourceGenerator;
 
 import java.io.File;
@@ -16,7 +12,10 @@ import java.util.logging.Logger;
 import javax.json.Json;
 
 /**
- *
+ * The system resource generator is responsible for periodically running a system
+ * command, converting the returned data into JSON format, then publishing the
+ * data.
+ * 
  * @author tbick
  */
 public class SystemResourceGenerator {
@@ -30,6 +29,12 @@ public class SystemResourceGenerator {
     //This may changed later, currently using files for IPC
     private File outputFile = null;
     
+    /**
+     * Creates a new generator which runs system calls.
+     * @param name The name of the generator (i.e. "date")
+     * @param systemCommand The command to run (i.e. "date +%s")
+     * @param period  The period at which to run the call, in ms.
+     */
     private SystemResourceGenerator(String name, String systemCommand, long period){
         this.systemCommand = systemCommand;
         this.period = period;
@@ -38,6 +43,10 @@ public class SystemResourceGenerator {
         initialize();
     }
     
+    /**
+     * 1) Create the output directory and grab the file
+     * 2) Start a timertask to run at the specified period
+     */
     private void initialize(){
         //Create filepath and file
         if( !new File("./command_output").exists() ){
@@ -57,6 +66,11 @@ public class SystemResourceGenerator {
         }
     }
     
+    /**
+     * This is where the time task returns data.  This class accepts the 
+     * data then publishes it.
+     * @param value 
+     */
     protected void receiveData(Object value){
         this.value = value;
         System.out.println("Generated value: " + value);
@@ -64,6 +78,10 @@ public class SystemResourceGenerator {
         publish();
     }
     
+    /**
+     * Convert the data to JSON (for now, this is hardcoded) and "publish" the
+     * data (for now, it is just written out to a file).
+     */
     private void publish(){
         try {
             String json = Json.createObjectBuilder()
@@ -76,6 +94,7 @@ public class SystemResourceGenerator {
             Logger.getLogger(SystemResourceGenerator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     
     public static void main(String args[]){
         if(args.length != 3){

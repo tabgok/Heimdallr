@@ -1,7 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * The DataServer connects to localhost on port 8888.
+ * It essentially serves data from a file "cwd/command_output/epoch, which
+ * is updated by another program.
  */
 package WebServer;
 
@@ -23,10 +23,12 @@ import java.util.logging.Logger;
 public class DataServer implements HttpHandler{
     private static DataServer ds = null;
     
+    //All main needs to do is create a dataserver
     public static void main(String args[]){
         getDataServer();
     }
     
+    //Only allow a single instance on a machine.
     public static DataServer getDataServer(){
         if(ds == null){
             ds = new DataServer();
@@ -35,6 +37,11 @@ public class DataServer implements HttpHandler{
         return ds;
     }
     
+    /**
+     * Connect to localhost and listen on port 8888.
+     * Register "/getMetric" to handler (this class) which
+     * calls the "handle" subroutine.
+     */
     private DataServer(){
         try {
             InetSocketAddress is = new InetSocketAddress("localhost", 8888);
@@ -50,6 +57,12 @@ public class DataServer implements HttpHandler{
         }
     }
     
+    /**
+     * When called (i.e. when /getMetric is called), this function reads the
+     * output of the file "$(cwd)/command_output/epoch and returns the data.
+     * @param he
+     * @throws IOException 
+     */
     @Override
     public void handle(HttpExchange he) throws IOException {
         
