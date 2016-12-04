@@ -13,6 +13,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -65,6 +67,11 @@ public class DataServer implements HttpHandler{
      */
     @Override
     public void handle(HttpExchange he) throws IOException {
+        //System.out.println("Received an http request: " + he.getRequestURI().getQuery());
+        Map<String, String> parameters = queryToMap(he.getRequestURI().getQuery());
+        
+        System.out.println("Got parameters: ");
+        parameters.forEach((k, v) -> System.out.println("\t"+k + ": " + v));
         
         BufferedReader br = new BufferedReader(new FileReader("./command_output/epoch"));
         String response = br.readLine();
@@ -73,6 +80,22 @@ public class DataServer implements HttpHandler{
         OutputStream os = he.getResponseBody();
         os.write(response.getBytes());
         os.close();
+    }
+    
+    
+    private Map<String, String> queryToMap(String query){
+        Map<String, String> parameters = new HashMap<>();
+        
+        for(String param : query.split("&")){
+            String[] pair = param.split("=");
+            if(pair.length >= 2){
+                parameters.put(pair[0], pair[1]);
+            }else{
+                parameters.put(pair[0], "");
+            }
+        }
+        
+        return parameters;
     }
 
 }
