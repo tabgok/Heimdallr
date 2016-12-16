@@ -6,6 +6,7 @@
 package MessageCenter;
 
 import MessageCenter.tcp.TcpServer;
+import java.util.HashMap;
 
 /**
  *
@@ -14,9 +15,20 @@ import MessageCenter.tcp.TcpServer;
 public class MessageCenter {
     private final TcpServer tcpserver;
     private static final MessageCenter msgCtr = new MessageCenter();
+    private final HashMap<String, MessageHandler> handlers = new HashMap<>();
     
     public static MessageCenter getMessageCenter(){
         return msgCtr;
+    }
+    
+    public void registerHandler(String id, MessageHandler mh){
+        handlers.put(id, mh);
+    }
+    
+    public Message getMessage(Address destinationAddress){
+        Message m = new Message();
+        
+        return m;
     }
     
     private MessageCenter(){
@@ -31,11 +43,11 @@ public class MessageCenter {
         
     }
     
-    public void requestReply(MessageCenterPath p){
+    public void requestReply(Address p){
         
     }
     
-    public void subscribe(MessageCenterPath p){
+    public void subscribe(Address p){
         
     }
     
