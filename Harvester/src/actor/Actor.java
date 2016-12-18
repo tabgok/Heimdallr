@@ -6,6 +6,7 @@
 package actor;
 
 import MessageCenter.Message;
+import MessageCenter.MessageCenter;
 import MessageCenter.MessageHandler;
 
 /**
@@ -18,6 +19,7 @@ public class Actor implements MessageHandler{
     
     public Actor(){
         System.out.println("Created actor: " + name);
+        MessageCenter.getMessageCenter().registerHandler(name, this);
     }
     
     @Override
