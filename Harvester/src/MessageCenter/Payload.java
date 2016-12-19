@@ -9,10 +9,14 @@ package MessageCenter;
  *
  * @author teague
  */
-public class Address {
-    protected String address;
+public class Payload {
+    private String data;
     
-    public Address(String addr){
-        address = addr;
+    public Payload(String d){
+        data = d;
+    }
+    
+    public String toString(){
+        return data;
     }
 }

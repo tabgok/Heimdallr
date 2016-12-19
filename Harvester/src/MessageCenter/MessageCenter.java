@@ -22,6 +22,7 @@ public class MessageCenter {
     }
     
     public void registerHandler(String id, MessageHandler mh){
+        System.out.println("Registering a handler: '" + id +"'");
         handlers.put(id, mh);
     }
     
@@ -56,6 +57,10 @@ public class MessageCenter {
     }
     
     public void receiveMessage(Message m){
-        
+        String dest = m.destination.address;
+
+        if(handlers.containsKey(dest)){
+            handlers.get(dest).handleMessage(m);
+        }
     }
 }

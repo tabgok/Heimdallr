@@ -15,7 +15,7 @@ import MessageCenter.MessageHandler;
  */
 public class Actor implements MessageHandler{
     private static int ACTORS = 1;
-    private String name = "Actor " + (ACTORS++);
+    private String name = "Actor" + (ACTORS++);
     
     public Actor(){
         System.out.println("Created actor: " + name);
@@ -24,7 +24,7 @@ public class Actor implements MessageHandler{
     
     @Override
     public void handleMessage(Message m) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(name + " - Handling a message: " + m.getRequest());
     }
     
 }

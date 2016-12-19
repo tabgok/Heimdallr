@@ -29,16 +29,20 @@ public class TcpConnectionWriter implements Runnable {
     
     @Override
     public void run() {
+        
         while(true){
             try {
                 String s = queue.take();
                 output.write(s.getBytes());
             } catch (IOException ex) {
                 Logger.getLogger(TcpConnectionWriter.class.getName()).log(Level.SEVERE, null, ex);
+                break;
             } catch (InterruptedException ex) {
                 Logger.getLogger(TcpConnectionWriter.class.getName()).log(Level.SEVERE, null, ex);
+                break;
             }
         }
+        
     }
     
 }
