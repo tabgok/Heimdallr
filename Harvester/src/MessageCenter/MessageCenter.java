@@ -22,7 +22,6 @@ public class MessageCenter {
     }
     
     public void registerHandler(String id, MessageHandler mh){
-        System.out.println("Registering a handler: '" + id +"'");
         handlers.put(id, mh);
     }
     
