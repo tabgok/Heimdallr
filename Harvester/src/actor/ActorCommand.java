@@ -5,10 +5,12 @@
  */
 package actor;
 
+import MessageCenter.Message;
+
 /**
  *
  * @author teague
  */
-public class ActorCommand {
+public class ActorCommand extends Message{
     
 }

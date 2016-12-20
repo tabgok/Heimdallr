@@ -7,6 +7,7 @@ package main;
 
 import MessageCenter.MessageCenter;
 import actor.Actor;
+import actor.SystemCommandActor;
 
 /**
  *
@@ -17,5 +18,6 @@ public class Main {
         MessageCenter.getMessageCenter().initialize();
         Actor a = new Actor();
         Actor b = new Actor();
+        Actor c = new SystemCommandActor(0, "date +%s");
     }
 }
