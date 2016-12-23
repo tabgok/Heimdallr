@@ -21,6 +21,9 @@ public abstract class MessageHandler implements Runnable{
         return incomingMessages.take();
     }
     
+    protected void sendMessage(Message m){
+        MESSAGE_CENTER.send(m);
+    }
     public abstract void handleMessage(Message m);
     
     public abstract void handleReply(Message m);

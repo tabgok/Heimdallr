@@ -19,7 +19,8 @@ import java.util.logging.Logger;
  */
 public class Actor extends MessageHandler implements Runnable{
     private static int ACTORS = 1;
-    private String name = "Actor" + (ACTORS++);
+    private final String name = "Actor" + (ACTORS++);
+    
     
     public Actor(){
         System.out.println("Created actor: " + name);
