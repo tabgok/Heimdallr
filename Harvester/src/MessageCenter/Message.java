@@ -5,31 +5,81 @@
  */
 package MessageCenter;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
 /**
  *
  * @author teague
  */
 public class Message {
-    protected Address source;
-    protected Address destination;
-    protected Payload data;
+    public final String uniqueID = new BigInteger(130, new SecureRandom()).toString(32);
+    private Address source;
+    private Address destination;
+    private Payload data;
+    private Payload reply;
     
-    public Message(String dst, String src, String d){
-        source = new Address(src);
-        destination = new Address(dst);
-        data = new Payload(d);
+    private boolean isReply = false;
+    
+    public Message(Address dst, Address src, Payload d){
+        source = src;
+        destination = dst;
+        data = d;
     }
     
     public Message(){
         
     }
     
+    public void setSource(Address src){
+        source = src;
+    }
     
-    public String getRequest(){
+    public void setDestination(Address dst){
+        destination = dst;
+    }
+    
+    public void setMessage(Payload data){
+        this.data = data;
+    }
+    
+    public String getMessage(){
         return data.toString();
     }
     
-    public void reply(){
-        
+    public String getReply(){
+        return reply.toString();
     }
+    
+    public void setReply(Payload reply){
+        isReply = true;
+        this.reply = reply;
+    }
+    
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("MESSAGE\n");
+        sb.append("\tUniqueID: \t\t" + uniqueID +"\n");
+        sb.append("\tSource: \t\t" + (source == null ? "N/A" : source) +"\n");
+        sb.append("\tDestination: \t\t" + (destination == null ? "N/A" : destination)+"\n");
+        sb.append("\tOriginal Message: \t" + (data == null ? "N/A" : data.toString())+"\n");
+        sb.append("\tReply Message: \t\t" + (reply == null ? "N/A" : reply.toString())+"\n");
+        
+        return sb.toString();
+    }
+    
+    public Address getDestination(){
+        return destination;
+    }
+    
+    public Address getSource(){
+        return source;
+    }
+    
+    public boolean isReply(){
+        return isReply;
+    }
+    
+   
 }

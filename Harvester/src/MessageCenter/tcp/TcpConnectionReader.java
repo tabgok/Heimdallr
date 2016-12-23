@@ -5,8 +5,10 @@
  */
 package MessageCenter.tcp;
 
+import MessageCenter.Address;
 import MessageCenter.Message;
 import MessageCenter.MessageCenter;
+import MessageCenter.Payload;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -38,9 +40,9 @@ public class TcpConnectionReader implements Runnable {
                 messageData.containsKey("Source") &&
                 messageData.containsKey("Payload")){
             Message m = new Message(
-                messageData.get("Destination"),
-                messageData.get("Source"),
-                messageData.get("Payload"));
+                new Address(messageData.get("Destination")),
+                new Address(messageData.get("Source")),
+                new Payload(messageData.get("Payload")));
                     
             MessageCenter.getMessageCenter().receiveMessage(m);
         }

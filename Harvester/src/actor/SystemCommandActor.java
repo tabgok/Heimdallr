@@ -27,9 +27,8 @@ public class SystemCommandActor extends Actor {
         this.period = period;
     }
     
-    @Override
     public void handleMessage(Message m){
-        super.handleMessage(m);
+        
         runner = new SystemCommandRunner(period, command);
         
         new Thread(runner).start();
