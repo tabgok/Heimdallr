@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package actor;
 
-import MessageCenter.Message;
+package actor;
 
 /**
  *
- * @author teague
  */
-public class ActorCommand extends Message{
-    String command;
+public interface AdvancedActor {
+    public abstract void handleCommand(ActorCommand ac);
 }
