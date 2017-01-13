@@ -23,6 +23,9 @@ public abstract class MessageCenter implements Runnable{
     
     
     public Address getAddress(){
+        if(addr == null){
+            addr = getMessageReceiver().getAddress();
+        }
         return addr;
     }
     
@@ -39,7 +42,8 @@ public abstract class MessageCenter implements Runnable{
         new Thread(receiver.receiveMessages()).start();
 
         new Thread(this).start();
-
+        
+        
     }
     /*
      * These must be specified by the MessageCenter insantiation

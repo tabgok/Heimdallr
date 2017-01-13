@@ -10,6 +10,7 @@ import com.teague.messages.Message;
 import com.teague.messagecenter.TcpMessageCenter;
 import com.teague.messages.Address;
 import com.teague.messages.AddressFactory;
+import com.teague.messages.TcpAddress;
 
 /**
  *
@@ -18,6 +19,9 @@ public class Harvester extends TcpMessageCenter {
     private static Integer GLOBALID = 1;
     private Integer ID = GLOBALID++;
     public Harvester(){
+        TcpAddress indexerAddress = new TcpAddress("localhost", 8888);
+        Message m = new Message(getAddress(), indexerAddress, "Register me");
+        sendMessage(m);
     }
     
     @Override
