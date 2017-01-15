@@ -6,48 +6,22 @@
 
 package com.teague.messagecenter;
 
-import com.teague.messagesender.MessageSender;
-import com.teague.messagreceiver.MessageReceiver;
+import com.teague.actors.Actor;
 import com.teague.messages.Address;
 
 /**
- *  One thread to receive   //Provided by a message center
- *  One thread to send      //Provided by a message center
- *  A main thread to handle.
- *      --
+ *
  */
-public abstract class MessageCenter implements Runnable{
-    private MessageReceiver receiver;
-    private MessageSender sender;
-    private Address addr;
+public interface MessageCenter extends Runnable{
+    //An actor is a player within this system - such as "Harvester 1", which may be responsible for gather information on one or more entities
+    public Address getActorAddress(String actorName);
     
+    //An entity is something physical which exists, such as a MACHINE or a DISK which is unique in the real world
+    public Address getEntityAddress(String entityName);
     
-    public Address getAddress(){
-        if(addr == null){
-            addr = getMessageReceiver().getAddress();
-        }
-        return addr;
-    }
-    
-    public MessageCenter(){
-    }
-    
-    protected final void initialize(){
-        sender = getMessageSender();
-        receiver = getMessageReceiver();
-        
-        
-        new Thread(sender.sendMessages()).start();
-        
-        new Thread(receiver.receiveMessages()).start();
+    //The address for this message center (an actor address).  
+    public Address getLocalAddress();
 
-        new Thread(this).start();
-        
-        
-    }
-    /*
-     * These must be specified by the MessageCenter insantiation
-     */
-    public abstract MessageSender getMessageSender();
-    public abstract MessageReceiver getMessageReceiver();    
+    void setActor(Actor a);
+    
 }

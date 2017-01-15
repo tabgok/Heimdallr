@@ -20,6 +20,11 @@ public class Message {
         this.message = message;
     }
     
+    public Message getReply(Message m, String message){
+        Message replyMessage = new Message(m.recepient,m.sender, message);
+        return replyMessage;
+    }
+    
     public Address getSender(){
         return sender;
     }
