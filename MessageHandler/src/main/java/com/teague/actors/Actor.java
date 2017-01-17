@@ -8,6 +8,7 @@ package com.teague.actors;
 
 import com.teague.commandcenter.CommandCenter;
 import com.teague.messagecenter.MessageCenter;
+import com.teague.messages.Address;
 import com.teague.messages.Message;
 import com.teague.storagecenter.StorageCenter;
 
@@ -27,4 +28,5 @@ public interface Actor {
     void setMessageCenter(MessageCenter mc);
     void setStorageCenter(StorageCenter sc);
     void setCommandCenter(CommandCenter cc);
+    void setParentAddress(Address parentAddr);
 }

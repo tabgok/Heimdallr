@@ -10,6 +10,8 @@ import com.teague.commandcenter.CommandCenter;
 import com.teague.commandcenter.PingCommandCenter;
 import com.teague.messagecenter.MessageCenter;
 import com.teague.messagecenter.TcpMessageCenter;
+import com.teague.messages.Address;
+import com.teague.messages.AddressFactory;
 import com.teague.messages.Message;
 import com.teague.storagecenter.SqlStorageCenter;
 import com.teague.storagecenter.StorageCenter;
@@ -91,8 +93,16 @@ public class GenericActor implements Actor {
         this.commandThread = new Thread(cc);
     }
     
+    @Override
+    public void setParentAddress(Address parentAddr) {
+        if(parentAddr != null){
+            Message parentNotification = new Message(messageCenter.getLocalAddress(), parentAddr, "ChildCreated:"+messageCenter.getLocalAddress());
+            addNextOutgoingMessage(parentNotification);
+        }
+    }
+    
     public static void main(String args[]){
-        if(args.length!=3){
+        if(args.length!=3 || args.length != 4){
             System.out.println("Invalid number of inputs");
             return;
         }
@@ -135,5 +145,11 @@ public class GenericActor implements Actor {
         ga.setMessageCenter(msgCtr);
         ga.setStorageCenter(stgCtr);
         ga.start();
+        
+        if(args.length == 4){
+            ga.setParentAddress(AddressFactory.getAddress(args[3]));
+        }
     }
+
+
 }
