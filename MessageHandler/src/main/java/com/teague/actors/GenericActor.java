@@ -13,17 +13,17 @@ import com.teague.messagecenter.TcpMessageCenter;
 import com.teague.messages.Address;
 import com.teague.messages.AddressFactory;
 import com.teague.messages.Message;
+import com.teague.processcenter.ProcessCenter;
 import com.teague.storagecenter.SqlStorageCenter;
 import com.teague.storagecenter.StorageCenter;
 import java.util.concurrent.LinkedBlockingQueue;
 
-/**
- *
- */
+
 public class GenericActor implements Actor {
     private MessageCenter messageCenter;    // For sending and receiving messages
     private StorageCenter storageCenter;    // For storing data (both locally and externally)
-    private CommandCenter commandCenter;    // For handling incoming messages and sending out messages
+    private CommandCenter commandCenter;    // For handling incoming commands and sending out commands
+    private ProcessCenter processCenter;    // For harvesters and aggregators - what to do with data
     
     private Thread messageThread;
     private Thread storageThread;

@@ -4,15 +4,11 @@
  * and open the template in the editor.
  */
 
-package com.teague.messagesender;
-
-import com.teague.messages.Message;
+package com.teague.processcenter;
 
 /**
  *
  */
-public interface MessageSender {
-    public Runnable sendMessages();
-    
-    public void send(Message m);
+public interface ProcessCenter {
+
 }
