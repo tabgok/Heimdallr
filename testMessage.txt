@@ -1,0 +1,15 @@
+{
+    "source":{
+        "location":{"s":""},
+        "name":{"name":""}
+    },
+    "destination":{
+        "location":{"s":""},
+        "name":{"name":"0"}
+    },
+    "requestConfirmation":"true",
+    "message":{
+        "title":"Hello",
+        "message":"World"
+    }
+}
