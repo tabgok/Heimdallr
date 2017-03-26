@@ -1,9 +1,9 @@
 package com.tabgok.entity.factory;
 
-import com.tabgok.entity.factory.harvester.Harvester;
+import com.tabgok.entity.harvester.Harvester;
 import com.tabgok.entity.Machine;
 import com.tabgok.data.StringData;
-import com.tabgok.entity.factory.harvester.HarvesterListener;
+import com.tabgok.entity.harvester.HarvesterListener;
 import com.tabgok.harvester.commands.CommandResult;
 import com.tabgok.harvester.commands.SystemCommand;
 import java.util.HashSet;

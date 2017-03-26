@@ -1,6 +1,6 @@
 package com.tabgok.harvester.commands;
 
-import com.tabgok.entity.factory.harvester.Harvester;
+import com.tabgok.entity.harvester.Harvester;
 
 public abstract class Command implements Runnable {
     private final String variable;

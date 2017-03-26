@@ -2,8 +2,8 @@ package com.tabgok.entity.factory;
 
 import com.tabgok.data.LongData;
 import com.tabgok.entity.MountedFilesystem;
-import com.tabgok.entity.factory.harvester.Harvester;
-import com.tabgok.entity.factory.harvester.HarvesterListener;
+import com.tabgok.entity.harvester.Harvester;
+import com.tabgok.entity.harvester.HarvesterListener;
 import com.tabgok.harvester.commands.CommandResult;
 import java.util.HashMap;
 import java.util.HashSet;

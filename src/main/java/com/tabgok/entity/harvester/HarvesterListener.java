@@ -1,4 +1,4 @@
-package com.tabgok.entity.factory.harvester;
+package com.tabgok.entity.harvester;
 
 import com.tabgok.harvester.commands.CommandResult;
 

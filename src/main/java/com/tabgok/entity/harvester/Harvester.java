@@ -1,4 +1,4 @@
-package com.tabgok.entity.factory.harvester;
+package com.tabgok.entity.harvester;
 
 import com.tabgok.harvester.commands.Command;
 import com.tabgok.harvester.commands.CommandResult;
@@ -9,7 +9,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 
-public class Harvester implements HarvesterListener{
+public class Harvester implements HarvesterListener {
     private final HashMap<String, HashSet<HarvesterListener>> listeners = new HashMap<>();
     private final ScheduledExecutorService exec = Executors.newScheduledThreadPool(10);
     
@@ -26,7 +26,6 @@ public class Harvester implements HarvesterListener{
         }
         
     }
-    
     
     public synchronized void register(HarvesterListener e, String variable){
         if(!listeners.containsKey(variable)){
