@@ -1,9 +1,14 @@
 package com.tabgok.harvester.commands;
 
-import com.tabgok.harvester.HarvestFactory;
+import com.tabgok.entity.factory.harvester.Harvester;
 
 public abstract class Command implements Runnable {
     private final String variable;
+    private Harvester harvester;
+    
+    public String getVariable(){
+        return variable;
+    }
     
     public Command(String variable){
         this.variable = variable;
@@ -11,10 +16,16 @@ public abstract class Command implements Runnable {
     
     @Override
     public void run() {
-        String result = runCommand();
-        HarvestFactory.receive(variable, result);
+        CommandResult result = runCommand();
+        
+        if(result != null){
+            harvester.receive(result);
+        }
     }
     
+    public void setHarvester(Harvester harvester){
+        this.harvester = harvester;
+    }
     
-    protected abstract String runCommand();
+    protected abstract CommandResult runCommand();
 }

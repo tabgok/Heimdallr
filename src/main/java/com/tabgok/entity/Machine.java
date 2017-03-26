@@ -1,18 +1,30 @@
 package com.tabgok.entity;
 
-import java.util.LinkedList;
+import com.tabgok.data.StringData;
+import java.util.HashMap;
+import java.util.Set;
 
 
 public class Machine extends Entity {
-    private final LinkedList<Disk> disks = new LinkedList<>();
+    private StringData MachineID;
+    private final HashMap<String, MountedFilesystem> mountedFilesystems = new HashMap<>();
     
-    public Machine(){
-         
-   }
-
-    @Override
-    public void update(String value) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Machine(){}
+    
+    public StringData getID(){
+        return MachineID;
     }
     
+    public String[] getmountedFilesystemIDs(){
+        return mountedFilesystems.keySet().toArray(new String[0]);
+    }
+    
+    public void setID(StringData ID){
+        this.MachineID = ID;
+    }
+    
+    public void updateMountedFilesystemIDs(Set<String> IDs){
+        mountedFilesystems.keySet().addAll(IDs);
+        mountedFilesystems.keySet().retainAll(IDs);
+    }
 }
