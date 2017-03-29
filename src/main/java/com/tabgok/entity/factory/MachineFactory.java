@@ -48,10 +48,10 @@ public class MachineFactory implements HarvesterListener{
     }
     
     @Override
-    public void receive(CommandResult result) {
+    public void receive(CommandResult result) {        
         if(result == null){ return; }
-        
         switch(result.getVariable()){
+            
             case "MachineID":
                 if(result.getValue() != null){
                     machine.setID(new StringData(result.getTimestamp(),result.getValue()));
@@ -72,8 +72,9 @@ public class MachineFactory implements HarvesterListener{
             }
             
             String[] fields = line.split("\\s+");
+            
             mountPoints.add(fields[5]);
-            machine.updateMountedFilesystemIDs(mountPoints);
         }
+        machine.updateMountedFilesystemIDs(mountPoints);
     }
 }

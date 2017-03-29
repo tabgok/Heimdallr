@@ -1,13 +1,13 @@
 package com.tabgok.entity;
 
 import com.tabgok.data.StringData;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 
 public class Machine extends Entity {
     private StringData MachineID;
-    private final HashMap<String, MountedFilesystem> mountedFilesystems = new HashMap<>();
+    private final HashSet<String> mountedFilesystems = new HashSet<>();
     
     public Machine(){}
     
@@ -16,7 +16,7 @@ public class Machine extends Entity {
     }
     
     public String[] getmountedFilesystemIDs(){
-        return mountedFilesystems.keySet().toArray(new String[0]);
+        return mountedFilesystems.toArray(new String[0]);
     }
     
     public void setID(StringData ID){
@@ -24,7 +24,7 @@ public class Machine extends Entity {
     }
     
     public void updateMountedFilesystemIDs(Set<String> IDs){
-        mountedFilesystems.keySet().addAll(IDs);
-        mountedFilesystems.keySet().retainAll(IDs);
+        mountedFilesystems.addAll(IDs);
+        mountedFilesystems.retainAll(IDs);
     }
 }

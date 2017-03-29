@@ -22,7 +22,6 @@ public class SystemCommand extends Command {
     protected final CommandResult runCommand() {
         CommandResult result = null;
         try {
-            
             Process p = Runtime.getRuntime().exec((new String[] {"/bin/bash", "-c", systemCall}));
             p.waitFor();
             

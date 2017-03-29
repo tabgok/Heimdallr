@@ -18,7 +18,6 @@ public class Harvester implements HarvesterListener {
     public void scheduleCommand(Command c, long timeoutMs){
         if(timeoutMs > 0){
             c.setHarvester(this);
-            System.out.println("Scheduling: " + c.getVariable());
             exec.scheduleAtFixedRate(c, timeoutMs, timeoutMs, TimeUnit.MILLISECONDS);
             
         }else{
@@ -31,14 +30,15 @@ public class Harvester implements HarvesterListener {
         if(!listeners.containsKey(variable)){
             listeners.put(variable, new HashSet<>());
         }
-        System.out.println(e+": " +listeners.keySet());
         listeners.get(variable).add(e);
     }
     
     @Override
     public void receive(CommandResult result){
-        for(HarvesterListener e : listeners.get(result.getVariable())){
-            e.receive(result);
+        if(result!=null){
+            for(HarvesterListener e : listeners.get(result.getVariable())){
+                e.receive(result);
+            }
         }
     }
 }
