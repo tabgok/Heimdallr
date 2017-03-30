@@ -9,10 +9,13 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 
 public class Gateway {
     static Machine machine;
-    public Gateway(Machine machine){
+    private Server server;
+    private Gateway(Machine machine){
         this.machine = machine;
-        Server server = new Server(8080);
-        
+        server = new Server(8080);
+    }
+    
+    public void start(){
         try {
             ServletContextHandler handler = new ServletContextHandler(server, "/");
             handler.addServlet(EpochServlet.class, "/epoch");
@@ -23,6 +26,9 @@ public class Gateway {
         } catch (Exception ex) {
             Logger.getLogger(Gateway.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+    }
+    
+    public static Gateway getGateway(Machine machine){
+        return new Gateway(machine);
     }
 }

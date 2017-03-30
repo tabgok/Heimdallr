@@ -1,4 +1,4 @@
-package com.tabgok.entity.factory;
+package com.tabgok.entity.updater;
 
 import com.tabgok.data.LongData;
 import com.tabgok.entity.MountedFilesystem;

@@ -2,7 +2,7 @@ package com.tabgok.server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.tabgok.entity.factory.MountedFilesystemUpdater;
+import com.tabgok.entity.updater.MountedFilesystemUpdater;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

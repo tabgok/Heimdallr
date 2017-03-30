@@ -9,7 +9,11 @@ public class Machine extends Entity {
     private StringData MachineID;
     private final HashSet<String> mountedFilesystems = new HashSet<>();
     
-    public Machine(){}
+    private Machine(){}
+    
+    public static Machine getMachine(){
+        return new Machine();
+    }
     
     public StringData getID(){
         return MachineID;

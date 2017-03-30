@@ -1,4 +1,4 @@
-package com.tabgok.entity.factory;
+package com.tabgok.entity.updater;
 
 import com.tabgok.entity.harvester.Harvester;
 import com.tabgok.entity.Machine;
@@ -9,23 +9,20 @@ import com.tabgok.harvester.commands.SystemCommand;
 import java.util.HashSet;
 
 
-public class MachineFactory implements HarvesterListener{
-    private static Machine machine;
+public class MachineUpdater implements HarvesterListener{
+    private Machine machine;
     private Harvester harvester;
     private MountedFilesystemUpdater filesystemFactory;
     
-    public MachineFactory(){}
+    private MachineUpdater(Machine machine){
+        this.machine = machine;
+    }
    
-    
-    public Machine getMachine(){
-        if(machine == null){
-            machine = new Machine();
-        }
-        
-        return machine;
+    public static MachineUpdater getUpdater(Machine machine){
+        return new MachineUpdater(machine);
     }
     
-    public void startUpdater(){
+    public void start(){
         if(harvester == null){
             harvester = new Harvester();
             filesystemFactory = new MountedFilesystemUpdater(harvester);
