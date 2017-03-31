@@ -9,13 +9,13 @@ import java.util.Set;
  * model for a machine, meaning it contains within it either references to, or values of,
  * everything within a machine from Hardware to Filesystems to applications.
  */
-public class Machine extends Entity {
-    private StringData MachineID;
+public class Machine implements Entity {
+    private StringData machineId;
     private final HashSet<String> mountedFilesystems = new HashSet<>();
     
     private Machine(){}
     
-    public static Machine getMachine(){
+    public static Machine create(){
         return new Machine();
     }
     
@@ -24,7 +24,7 @@ public class Machine extends Entity {
      * @return Returns the machine's ID - this ID is expected to be globally unique
      */
     public StringData getID(){
-        return MachineID;
+        return machineId;
     }
     
     /**
@@ -39,16 +39,16 @@ public class Machine extends Entity {
      * 
      * @param ID Set this machine's ID
      */
-    public void setID(StringData ID){
-        this.MachineID = ID;
+    public void setID(StringData id){
+        this.machineId = id;
     }
     
     /**
      * 
      * @param IDs Update this machine's mounted partitions
      */
-    public void updateMountedFilesystemIDs(Set<String> IDs){
-        mountedFilesystems.addAll(IDs);
-        mountedFilesystems.retainAll(IDs);
+    public void updateMountedFilesystemIDs(Set<String> ids){
+        mountedFilesystems.addAll(ids);
+        mountedFilesystems.retainAll(ids);
     }
 }
