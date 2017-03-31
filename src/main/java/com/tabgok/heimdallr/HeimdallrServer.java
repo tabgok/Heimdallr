@@ -12,7 +12,7 @@ import com.tabgok.server.Gateway;
 public class HeimdallrServer {
 
     public static void main(String args[]){
-        Machine machine = Machine.getMachine();
+        Machine machine = Machine.create();
         MachineUpdater updater = MachineUpdater.getUpdater(machine);
         Gateway gateway = Gateway.getGateway(machine);
         
