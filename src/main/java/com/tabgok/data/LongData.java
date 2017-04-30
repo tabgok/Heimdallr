@@ -1,13 +1,16 @@
 package com.tabgok.data;
 
-import com.tabgok.data.Data;
 
-
-public class LongData extends Data {
-    private final long value;
+public final class LongData extends Data<Long>{
+    private final Long value;
     
-    public LongData(long timestamp, long value){
-        super(timestamp);
+    public LongData(Long timestamp, String unit, String variable, Long value) {
+        super(timestamp, unit, variable);
         this.value = value;
+    }
+
+    @Override
+    public Long getData() {
+        return value;
     }
 }
